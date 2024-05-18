@@ -12,10 +12,7 @@ class GameProvider with ChangeNotifier {
   int maxQuestionCount = 10;
   int correctCount = 0;
   late String difficultyLevel;
-  GameProvider() {
-    startGame();
-  }
-//  Set difficulty Level
+
   setDifficultyLevel({required String value}) {
     difficultyLevel = value;
   }
@@ -25,7 +22,7 @@ class GameProvider with ChangeNotifier {
       Response response = await _dio.get(
         "https://opentdb.com/api.php",
         queryParameters: {
-          "amount": 10,
+          "amount": 50,
           "difficulty": difficultyLevel,
           "type": "boolean",
         },

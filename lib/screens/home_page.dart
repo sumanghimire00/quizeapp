@@ -15,6 +15,16 @@ class _HomePageScreenState extends State<HomePageScreen> {
   double currentDifficultylevel = 0;
   List<String> difficultyText = ["easy", "medium", "hard"];
   @override
+  void initState() {
+    final provider = Provider.of<GameProvider>(context, listen: false);
+    provider.setDifficultyLevel(
+        value: difficultyText[currentDifficultylevel.toInt()].toLowerCase());
+
+    provider.startGame();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
@@ -109,9 +119,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
             builder: (context) => GamePage(
               difficultyLevel:
                   Provider.of<GameProvider>(context).setDifficultyLevel(
-                value: difficultyText[currentDifficultylevel.toInt()]
-                    .toLowerCase(),
-              ),
+                        value: difficultyText[currentDifficultylevel.toInt()]
+                            .toLowerCase(),
+                      ) ??
+                      "",
             ),
           ),
         );

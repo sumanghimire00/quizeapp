@@ -14,7 +14,8 @@ class QuizeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<GameProvider>(create: (_) => GameProvider()),
+        ChangeNotifierProvider<GameProvider>(
+            create: (_) => GameProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
