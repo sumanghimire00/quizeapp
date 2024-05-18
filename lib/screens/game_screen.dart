@@ -12,6 +12,13 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   double? _deviceWidth, _deviceHeight;
+  @override
+  void initState() {
+    final provider = Provider.of<GameProvider>(context, listen: false);
+
+    provider.startGame();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
