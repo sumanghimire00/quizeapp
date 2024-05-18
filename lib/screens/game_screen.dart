@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:quizeapp/provider/game_provider.dart';
 
 class GamePage extends StatefulWidget {
-  const GamePage({super.key});
+  const GamePage({super.key, required this.difficultyLevel});
+  final String difficultyLevel;
 
   @override
   State<GamePage> createState() => _GamePageState();

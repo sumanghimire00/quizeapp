@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quizeapp/provider/game_provider.dart';
 import 'package:quizeapp/screens/game_screen.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -11,7 +13,7 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   double? deviceWidth, deviceHeight;
   double currentDifficultylevel = 0;
-  List<String> difficultyText = ["eassy", "medium", "difficult"];
+  List<String> difficultyText = ["easy", "medium", "hard"];
   @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
@@ -71,7 +73,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
       max: 2,
       min: 0,
       divisions: 2,
-      label: "eassy",
+      label: difficultyText[currentDifficultylevel.toInt()],
       value: currentDifficultylevel,
       onChanged: (value) {
         setState(
@@ -104,7 +106,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const GamePage(),
+            builder: (context) => GamePage(
+              difficultyLevel:
+                  Provider.of<GameProvider>(context).setDifficultyLevel(
+                value: difficultyText[currentDifficultylevel.toInt()]
+                    .toLowerCase(),
+              ),
+            ),
           ),
         );
       },
